@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is a partial Swagger/OpenApi modelling of the mock API available at
+    [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/).
+  version: "1.0.0"
+  title: Json Placeholder Typicode
+  termsOfService: 'https://jsonplaceholder.typicode.com/'
+servers:
+  - url: 'https://jsonplaceholder.typicode.com/'
+tags:
+  - name: user
+    description: There are Users, otherwise no service would make sense
+  - name: post
+    description: Users do Posts. Other Users then do Comments on those Posts.
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      summary: Get all Users, it's awesome
+      operationId: getAllUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /posts:
+    get:
+      tags:
+        - posts
+      summary: Get all Posts, it is even more awesome than getting all Users
+      operationId: getAllPosts
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+  /comments:
+    get:
+      tags:
+        - posts
+      summary: Get all Comments, it has to be the most awesomest since there are many
+      operationId: getAllComments
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        website:
+          type: string
+      required:
+      - id
+      - username
+      - email
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+      required:
+      - id
+      - userId
+      - title
+      - body
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        postId:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        body:
+          type: string
+      required:
+      - id
+      - postId
+      - body
