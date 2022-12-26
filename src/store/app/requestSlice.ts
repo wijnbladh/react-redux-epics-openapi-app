@@ -4,7 +4,7 @@ import { EMPTY, of } from 'rxjs';
 import { mergeMap, switchMap } from 'rxjs/operators';
 import { ACTION_TYPE_REQUEST_FINISHED, RequestLabel } from '../consts';
 import { RootState } from '../store';
-import { selectRequestState } from './appSelectors';
+import { selectRequestSlice } from './appSelectors';
 
 export enum RequestState {
   Initial = 1 << 0,
@@ -108,11 +108,11 @@ export const createRequest = (options: {
     return action$.pipe(
       ofType(startActionType),
       mergeMap(<I extends { isForced?: boolean }>(action: PayloadAction<I>) => {
-        const requests = selectRequestState(state$.value);
+        const requests = selectRequestSlice(state$.value);
         const request = requests[options.label] ?? undefined;
         if (
           request?.state === RequestState.Running &&
-          !action.payload.isForced
+          !action.payload?.isForced
         ) {
           return EMPTY;
         }

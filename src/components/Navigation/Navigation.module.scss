@@ -1,0 +1,13 @@
+@import 'src/base.scss';
+
+.container {
+  padding: 0 $DU;
+  display: flex;
+  gap: 0.5 * $DU;
+}
+
+@include media-breakpoint-down(md) {
+  .container :global .btn {
+    font-size: 0.75 * $DU !important;
+  }
+}

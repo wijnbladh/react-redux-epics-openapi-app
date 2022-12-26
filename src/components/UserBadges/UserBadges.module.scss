@@ -1,0 +1,12 @@
+@import 'src/base.scss';
+
+.container {
+  padding: 0.25 * $DU $DU;
+  display: flex;
+  gap: 0.5 * $DU;
+  flex-wrap: wrap;
+}
+
+.container__badge {
+  cursor: pointer;
+}

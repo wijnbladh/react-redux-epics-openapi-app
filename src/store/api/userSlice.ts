@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ofType, StateObservable } from 'redux-observable';
-import { of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { getUsersApi } from '../../openapi/comms';
 import { User } from '../../openapi/gencode';
 import { createRequest } from '../app/requestSlice';
-import { ACTION_TYPE_APP_STARTED, RequestLabel } from '../consts';
+import { RequestLabel } from '../consts';
 import { RootState } from '../store';
 import { getTimeoutSignal } from '../utils';
 
@@ -56,18 +55,6 @@ export const {
   },
 });
 
-export const fetchAllUsersAtAppStart = (
-  action$: any,
-  state$: StateObservable<RootState>
-) => {
-  return action$.pipe(
-    ofType(ACTION_TYPE_APP_STARTED),
-    mergeMap(() => {
-      return of(fetchAllUsersStartActionCreator());
-    })
-  );
-};
-
 export const reactToAllUsersFetched = (
   action$: any,
   state$: StateObservable<RootState>
@@ -83,6 +70,5 @@ export const reactToAllUsersFetched = (
 export const userEpics = [
   fetchAllUsersStartEpic,
   fetchAllUsersDoEpic,
-  fetchAllUsersAtAppStart,
   reactToAllUsersFetched,
 ];

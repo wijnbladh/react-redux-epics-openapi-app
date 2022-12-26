@@ -109,6 +109,8 @@ export const reactToAllCommentsFetched = (
 export const postEpics = [
   fetchAllPostsStartEpic,
   fetchAllPostsDoEpic,
+  reactToAllPostsFetched,
   fetchAllCommentsStartEpic,
   fetchAllCommentsDoEpic,
+  reactToAllCommentsFetched,
 ];
