@@ -1,3 +1,7 @@
+# Update 2025-04-29
+
+You probably no longer need the side-effect mechanics described in this repository. Please have a look at [React Query](https://ui.dev/why-react-query). I'd still recommend getting familiar with the OpenAPI/Swagger stuffs.
+
 # What is this
 
 React is a no-brainer for UI rendering and Redux is nice for managing the single source of truth about the application state. While those tools are probably familiar to most developers, this repository contains a sample project that includes two more things:
